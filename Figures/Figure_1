@@ -55,6 +55,27 @@ ggsave("~/Fig_1E.pdf", width = 15, height = 9)
 
 # Load integrated fetal dataset (including publically available datasets)
 
-public_integrated_fetal_datasets<-readRDS('public_integrated_fetal_datsets.rds')
+public_quach_integrated_fetal_datasets<-readRDS('public_quach_integrated_fetal_datsets.rds')
 
-DimPlot(public_integrated_fetal_datasets, cells.highlight=WhichCells(public_integrated_fetal_datasets, idents = c("Quach et al. 2023")) #add more
+DimPlot(public_quach_integrated_fetal_datasets, cells.highlight=WhichCells(public_quach_integrated_fetal_datasets, idents = c("Quach et al. 2023")) + scale_color_manual(labels = c("Publicly available dataset", "Quach et al. 2023"), values = c('grey', 'red')) + labs(color = "Fetal lung dataset")
+
+# Fig 1G
+
+# Load publically available integrated fetal dataset
+
+public_fetal_dataset<- readRDS('public_fetal_dataset.rds')
+
+# Find anchors between query and reference dataset
+
+public_quach.anchors <- FindTransferAnchors(reference = all_fetal, query = public_fetal_dataset, dims = 1:30, reference.reduction = "pca")
+
+predictions <- TransferData(anchorset = public_quach.anchors, refdata = all_fetal$all_cell_type, dims = 1:30)
+public_fetal_dataset <- AddMetaData(public_fetal_dataset, metadata = predictions)
+
+saveRDS(public_fetal_dataset, 'public_fetal_dataset.rds')
+
+# Generate frequency table of predicted ids
+
+write.csv(table(public_fetal_dataset$predicted.id), 'public_fetal_dataset_query.csv')
+
+
