@@ -13,7 +13,11 @@ str_palette<-readRDS('stromal_palette.rds')
 
 ## Fig 2A
 
-DimPlot(str_fetal, cols = str_palette)
+p1<-DimPlot(str_fetal, cols = str_palette)
+p1$data$num_ident<-str_fetal@meta.data$num_ident
+LabelClusters(p1, id ='num_ident')
+
+ggsave("Fig_2A.pdf", width = 15, height = 9)
 
 ## Fig 2B
 
@@ -29,7 +33,7 @@ ggplot(pt, aes(x = Var2, y = Freq, fill = Var1)) +
     theme(axis.text = element_text(size=25), axis.title = element_text(size=25)) +
     theme(legend.text=element_text(size=20)) +
     NoLegend()
-ggsave("~/Fig_1E.pdf", width = 15, height = 9)
+ggsave("Fig_2B.pdf", width = 15, height = 9)
 
 ## Fig 2C
 
@@ -79,8 +83,7 @@ regulonActivity_byCellType_Scaled <- t(scale(t(regulonActivity_byCellType), cent
 
 ComplexHeatmap::Heatmap(t(regulonActivity_byCellType_Scaled), name="Regulon activity", row_order = c(1:19), column_order = str_top_tf,row_labels = row_names, row_names_side = 'left')
 
-
-
+ggsave("Fig_2D.pdf", width = 40, height = 18)
 
 
 
