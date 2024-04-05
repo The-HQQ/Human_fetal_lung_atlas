@@ -59,6 +59,8 @@ public_quach_integrated_fetal_datasets<-readRDS('public_quach_integrated_fetal_d
 
 DimPlot(public_quach_integrated_fetal_datasets, cells.highlight=WhichCells(public_quach_integrated_fetal_datasets, idents = c("Quach et al. 2023")) + scale_color_manual(labels = c("Publicly available dataset", "Quach et al. 2023"), values = c('grey', 'red')) + labs(color = "Fetal lung dataset")
 
+ggsave("~/Fig_1F.pdf", width = 11, height = 8.5)
+
 # Fig 1G
 
 # Load publically available integrated fetal dataset
