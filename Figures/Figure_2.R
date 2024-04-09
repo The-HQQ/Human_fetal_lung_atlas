@@ -32,6 +32,7 @@ ggplot(pt, aes(x = Var2, y = Freq, fill = Var1)) +
     theme(axis.text.x = element_text(angle = 90)) +
     theme(axis.text = element_text(size=25), axis.title = element_text(size=25)) +
     theme(legend.text=element_text(size=20)) +
+    scale_fill_manual(values = str_palette) +
     NoLegend()
 ggsave("Fig_2B.pdf", width = 15, height = 9)
 
