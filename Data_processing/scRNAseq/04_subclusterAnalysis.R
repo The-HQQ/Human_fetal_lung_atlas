@@ -38,7 +38,7 @@ DefaultAssay(data.sub) <- "RNA"
 
 # Find the markers
 print("Finding markers")
-data.sub.markers <- FindAllMarkers(data.sub, only.pos = TRUE, assay = "RNA", verbose = TRUE)
+data.sub.markers <- FindAllMarkers(data.sub, logfc.threshold = 0.25, min.pct = 0.25, only.pos = TRUE, assay = "RNA", verbose = TRUE)
 
 # Order marker genes by fold change
 print("Arranging markers by descending values of fold change")
