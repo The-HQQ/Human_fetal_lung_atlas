@@ -27,13 +27,17 @@ features = top3$gene
 
 # DEG features that were chosen
 chosen_features = cc('CFTR','SFTPB','NKX2-1', 'SOX2', 'SOX9', 'FOXJ1', 'NRGN', 'PTEN', 'STAT3', 'BRCA1', 'FOXM1','MKI67', 'NUSAP1', 'CDK1', 'TEAD4', 'CPM', 'SFTPA', 'FGFR2', 'MUC1', 'SMAD6', 'SCGB1A1', 'RSPH1', 'DNAH5', 'TUBA1A', 'SFTPA1', 'ABCA3', 'CA2', 'TESC', 'ETV5', 'MFSD2A', 'IGFPB7', 'CHGB', 'CALCA', 'ASCL1')
-stromal_features <- c(features, chosen_features)
+epi_features <- c(features, chosen_features)
 
 # Change the order of the features to match up with the figure; or can load in the features already ordered
-ordered_stromal_features <- readRDS('ordered_epithelial_features.rds')
+ordered_epi_features <- readRDS('ordered_epithelial_features.rds')
+
+# Ensure selected features are scaled
+
+epi_fetal<-ScaleData(epi_fetal, features = ordered_epi_features)
 
 # Generate heatmap
-DoHeatmap(epi_fetal, assay = 'RNA', features = ordered_stromal_features, size = 4, angle = 0, group.colors = epi_palette, label = T, group.by = 'num_ident') +
+DoHeatmap(epi_fetal, assay = 'RNA', features = ordered_epi_features, size = 4, angle = 0, group.colors = epi_palette, label = T, group.by = 'num_ident') +
 scale_fill_viridis(option = "D") + guides(color = "none")+ theme(axis.title = element_text(size=30)) +theme(axis.text.y = element_text(size = 30))
 ggsave("Fig_4B.pdf", width = 40, height = 18)
 
