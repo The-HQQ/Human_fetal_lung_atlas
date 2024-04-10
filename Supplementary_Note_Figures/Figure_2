@@ -18,7 +18,7 @@ p1<-DimPlot(endo_fetal, cols = endo_palette)
 p1$data$num_ident<-endo_fetal@meta.data$num_ident
 LabelClusters(p1, id ='num_ident')
 
-ggsave("Fig_2A.pdf", width = 15, height = 9)
+ggsave("Supplementary_Note_Fig_2A.pdf", width = 15, height = 9)
 
 ## Supplementary Note Fig 2B
 
@@ -35,7 +35,7 @@ ggplot(pt, aes(x = Var2, y = Freq, fill = Var1)) +
     theme(legend.text=element_text(size=20)) +
     scale_fill_manual(values = endo_palette) +
     NoLegend()
-ggsave("Fig_2B.pdf", width = 15, height = 9)
+ggsave("Supplementary_Note_Fig_2B.pdf", width = 15, height = 9)
 
 ## Supplementary Note Fig 2C
 
@@ -55,7 +55,7 @@ ordered_endo_features <- readRDS('ordered_endo_features.rds')
 # Generate heatmap
 DoHeatmap(endo_fetal, assay = 'RNA', features = ordered_endo_features, size = 4, angle = 90) +
 scale_fill_viridis(option = "D") + guides(color = "none")+ theme(axis.title = element_text(size=30)) +theme(axis.text.y = element_text(size = 30))
-ggsave("Fig_2C.pdf", width = 40, height = 18)
+ggsave("Supplementary_Note_Fig_2C.pdf", width = 40, height = 18)
 
 ## Supplementary Note Fig 2D
 
@@ -86,7 +86,7 @@ regulonActivity_byCellType_Scaled <- t(scale(t(regulonActivity_byCellType), cent
 
 ComplexHeatmap::Heatmap(t(regulonActivity_byCellType_Scaled), name="Regulon activity", row_order = c(1:10), column_order = endo_top_tf,row_labels = row_names, row_names_side = 'left')
 
-ggsave("Fig_2D.pdf", width = 40, height = 18)
+ggsave("Supplementary_Note_Fig_2D.pdf", width = 40, height = 18)
 
 ## Supplementary Note Fig 2H
 
@@ -129,7 +129,7 @@ ImageDimPlot(xenium.obj, fov = zoom, group.by = "cell_type", axes = TRUE, border
     theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 
 # Define the filename using the current feature, change based on GW
-ggsave(paste0("Fig_4D_GW_15_dimplot.pdf"))
+ggsave(paste0("Supplementary_Note_Fig_4D_GW_15_dimplot.pdf"))
 
 # Plot feature plots
 
