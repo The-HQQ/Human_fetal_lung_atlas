@@ -123,6 +123,7 @@ xenium.gw18 <-readRDS('data/xenium_gw18_processed.rds')
 
 xenium.gw15_palette<-readRDS('palettes/xenium_gw15_palette.rds')
 xenium.gw18_palette<-readRDS('palettes/xenium_gw18_palette.rds')
+options(future.globals.maxSize = 3000 * 1024^2)
 
 # Select coordinates to zoom
 
