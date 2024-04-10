@@ -88,7 +88,7 @@ DefaultBoundary(xenium.gw15[["zoom"]]) <- "segmentation"
 # Plot spatial dimplot
 
 features <- c('TP63', 'SCGB3A2', 'FOXJ1')
-ImageDimPlot(xenium.obj, fov = zoom, group.by = "cell_type", axes = TRUE, border.color = "white", border.size = 0.075, cols = colours, coord.fixed = T, molecules = features, mols.size = 0.05, mols.cols = c("#FFFF00", "#00FF00", "#FF0088"), nmols = 10000) +
+ImageDimPlot(xenium.obj, fov = "zoom", group.by = "cell_type", axes = TRUE, border.color = "white", border.size = 0.075, cols = colours, coord.fixed = T, molecules = features, mols.size = 0.05, mols.cols = c("#FFFF00", "#00FF00", "#FF0088"), nmols = 10000) +
     theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 
 # Define the filename using the current feature, change based on GW
@@ -98,7 +98,7 @@ ggsave(paste0("Supplementary_Fig_4D_GW_15_dimplot.pdf"))
 
 for (feature in features) {
   # Generate the plot for the current feature; change
-  p <- ImageFeaturePlot(xenium.obj, fov = zoom, features = feature, max.cutoff = 'q90', size = 0.75, axes = FALSE, coord.fixed = TRUE) +
+  p <- ImageFeaturePlot(xenium.obj, fov = "zoom", features = feature, max.cutoff = 'q90', size = 0.75, axes = FALSE, coord.fixed = TRUE) +
     theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
     theme(plot.title = element_text(size = 20))
   
