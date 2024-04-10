@@ -36,6 +36,7 @@ RCTD <- run.RCTD(RCTD, doublet_mode = "full")
 vis.gw15 <- AddMetaData(vis.gw15, metadata = RCTD@results$results_df)
 
 saveRDS(vis.gw15, '/data/vis.gw15.rds')
+saveRDS(RCTD, '/data/RCTD_full_gw15.rds')
 
 # Repeat similar code for gw 18
 
