@@ -30,7 +30,12 @@ ggsave("Supplementary_Fig_1C.pdf")
 ## Supplementary Fig 1D,E
 
 # Repeat with gw 18 
-clustree(xenium.gw15)
+# Set other resolutions to null to save space for figure
+xenium.gw15@meta.data$SCT_snn_res.0.3 <- NULL
+xenium.gw15@meta.data$SCT_snn_res.0.5 <- NULL
+xenium.gw15@meta.data$SCT_snn_res.1 <- NULL
+
+clustree(xenium.gw15, prefix = 'SCT_snn_res.')
 
 ggsave("Supplementary_Fig_1D.pdf")
 # ggsave("Supplementary_Fig_1E.pdf")
@@ -49,22 +54,22 @@ features <- c('KDR', 'THY1', 'EPCAM', 'NKX2-1', 'CD86', 'CD68', 'COL5A2', 'TCF21
 
 # Repeat with gw 18
 
-DotPlot(object = xenium.gw15, features=features, cols = "RdBu") +
-    geom_point(aes(size=pct.exp), shape = 21, colour="black", stroke=0.5) +
-    theme(axis.text.x = element_text(angle = 90)) +
-    theme(axis.text.x = element_text(size = 16)) +
-    theme(axis.text.y = element_text(size = 16)) + scale_size(range = c(2, 5)) +
-    guides(size=guide_legend(title = 'Percent Expressed',override.aes=list(shape=21, colour="black", fill="white")))
+DotPlot(xenium.gw15, features = features) +
+  scale_color_gradient2(low = "blue", mid = "white", high = "red") +
+  geom_point(aes(size=pct.exp),shape=21, color="black", stroke=0.5) +
+  theme(axis.text.x = element_text(angle = 90))
 
-ggsave("Supplementary_Fig_1G.pdf")
-# ggsave("Supplementary_Fig_1I.pdf")
+ggsave("Supplementary_Fig_1G.pdf", width = 7.3, height = 3.5)
+# ggsave("Supplementary_Fig_1I.pdf", , width = 7.3, height = 3.5)
 
 ## Supplementary Fig 1J,K
 
 # Repeat with gw 18
 
-ImageDimPlot(xenium.gw15, fov = "fov", cols = xenium.gw15_palette, axes = TRUE)
+ImageDimPlot(xenium.gw15, fov = "fov", group.by = "cell_type", axes = TRUE, cols = colours, coord.fixed = T, size = 0.1, dark.background = F) +
+    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+   theme(legend.position = "none")
 
-ggsave("Supplementary_Fig_1J.pdf")
-# ggsave("Supplementary_Fig_1K.pdf")
+ggsave("Supplementary_Fig_1J.pdf", dpi =1000)
+# ggsave("Supplementary_Fig_1K.pdf", dpi = 1000)
 
