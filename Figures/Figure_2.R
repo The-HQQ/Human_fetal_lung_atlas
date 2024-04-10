@@ -1,4 +1,4 @@
-# Clear workspace ##Add more
+# Clear workspace
 rm(list = ls())
 
 # Load packages
@@ -69,14 +69,14 @@ embeddings <- get_embeddings(str_loom)
 cells<-regulonAUC@colData@rownames
 
 str_fetal<-subset(str_fetal, cells = cells)
-cellInfo<-data.frame(CellType=Idents(str_final))
+cellInfo<-data.frame(CellType=Idents(str_fetal))
 
 # Sort regulons by top transcription factors
 regulonAUC <- regulonAUC[rownames(regulonAUC) %in% str_top_tf,]
 
 # Generate heatmap based on regulon activity
 
-row_names <- 
+row_names <- levels(str_fetal)
 regulonsAUC <- regulonsAUC[onlyNonDuplicatedExtended(rownames(regulonsAUC)),]
 regulonActivity_byCellType <- sapply(split(rownames(cellInfo), cellInfo$CellType),
                                      function(cells) rowMeans(getAUC(regulonsAUC)[,cells]))
