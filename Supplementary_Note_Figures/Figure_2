@@ -129,7 +129,7 @@ ImageDimPlot(xenium.obj, fov = zoom, group.by = "cell_type", axes = TRUE, border
     theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 
 # Define the filename using the current feature, change based on GW
-ggsave(paste0("Supplementary_Note_Fig_4D_GW_15_dimplot.pdf"))
+ggsave(paste0("Supplementary_Note_Fig_2H_GW_15_dimplot.pdf"))
 
 # Plot feature plots
 
