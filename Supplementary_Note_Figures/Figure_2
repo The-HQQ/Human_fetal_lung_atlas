@@ -41,12 +41,12 @@ ggsave("Supplementary_Note_Fig_2B.pdf", width = 15, height = 9)
 
 # Load DEG table for endothelial cluster
 
-DEG_markers<-read.csv('c1_markers.csv')
-top3<- all_markers_res_0_01 %>% group_by(cluster) %>% top_n(n = 3, wt = avg_log2FC)
+DEG_markers<-read.csv('endo_markers.csv')
+top3<- DEG_markers %>% group_by(cluster) %>% top_n(n = 3, wt = avg_log2FC)
 features = top3$gene
 
 # DEG features that were chosen
-chosen_features = c('TCF21', 'PLEKHH2', 'FOS', 'EGR1', 'MKI67', 'TIMP3', 'LGALS3', 'MYH11', 'TMEM158')
+chosen_features = c('NRP2', 'TOP2A', 'MKI67', 'CENPF', 'EGFL6', 'COL6A3', 'REL', 'IRF', 'POU2F2', 'CPE', 'APLNR')
 endo_features <- c(features, chosen_features)
 
 # Change the order of the features to match up with the figure; or can load in the features already ordered
