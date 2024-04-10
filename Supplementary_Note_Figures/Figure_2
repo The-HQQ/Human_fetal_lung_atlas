@@ -87,3 +87,61 @@ regulonActivity_byCellType_Scaled <- t(scale(t(regulonActivity_byCellType), cent
 ComplexHeatmap::Heatmap(t(regulonActivity_byCellType_Scaled), name="Regulon activity", row_order = c(1:10), column_order = endo_top_tf,row_labels = row_names, row_names_side = 'left')
 
 ggsave("Fig_2D.pdf", width = 40, height = 18)
+
+## Supplementary Note Fig 2H
+
+# Load in processed xenium objects and palettes
+
+xenium.gw15 <- readRDS('data/xenium_gw15_processed.rds')
+xenium.gw18 <-readRDS('data/xenium_gw18_processed.rds')
+
+xenium.gw15_palette<-readRDS('palettes/xenium_gw15_palette.rds')
+xenium.gw18_palette<-readRDS('palettes/xenium_gw18_palette.rds')
+
+# Select coordinates to zoom
+
+GW15_coords8 <- Crop(xenium.gw15[["fov"]], x = c(12400, 12700), y = c(6580, 6880), coords = "plot")
+
+xenium.gw15[["zoom8"]] <- GW15_coords8
+DefaultBoundary(xenium.gw15[["zoom8"]]) <- "segmentation"
+
+GW18_coords8<- Crop(xenium.gw18[["fov"]], x = c(12300, 12600), y = c(3100, 3400), coords = "plot")
+
+xenium.gw18[["zoom8"]] <- GW18_coords8
+DefaultBoundary(xenium.gw18[["zoom8"]]) <- "segmentation"
+
+# Define features to plot
+
+#features <- c('CA4', 'KDR', 'STC1', 'THY1')
+
+# Define gestational week and zoom to plot
+
+# xenium.obj<- xenium.gw15
+# xenium.obj<- xenium.gw18
+# colours <- xenium.gw15_palette
+# colours <- xenium.gw18_palette
+
+zoom<-"zoom8"
+
+# Plot spatial dimplot
+
+ImageDimPlot(xenium.obj, fov = zoom, group.by = "cell_type", axes = TRUE, border.color = "white", border.size = 0.075, cols = colours, coord.fixed = T, molecules = features, mols.size = 0.05, mols.cols = c("#FFFF00", "#00FF00", "#FF0088"), nmols = 10000) +
+    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+
+# Define the filename using the current feature, change based on GW
+ggsave(paste0("Fig_4D_GW_15_dimplot.pdf"))
+
+# Plot feature plots
+
+for (feature in features) {
+  # Generate the plot for the current feature; change
+  p <- ImageFeaturePlot(xenium.obj, fov = zoom, features = feature, max.cutoff = 'q90', size = 0.75, axes = FALSE, coord.fixed = TRUE) +
+    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+    theme(plot.title = element_text(size = 20))
+  
+  # Define the filename using the current feature, change based on GW
+  filename <- paste0("Supplementary_Note_Figure_2H_GW_15", feature, ".pdf")
+  
+  # Save the plot to a PDF file
+  ggsave(filename, plot = p, device = "pdf", height = 4.5, width = 5, units = "in")
+}
