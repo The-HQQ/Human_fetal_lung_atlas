@@ -104,13 +104,13 @@ options(future.globals.maxSize = 3000 * 1024^2)
 
 GW15_coords8 <- Crop(xenium.gw15[["fov"]], x = c(12400, 12700), y = c(6580, 6880), coords = "plot")
 
-xenium.gw15[["zoom8"]] <- GW15_coords8
-DefaultBoundary(xenium.gw15[["zoom8"]]) <- "segmentation"
+xenium.gw15[["zoom"]] <- GW15_coords8
+DefaultBoundary(xenium.gw15[["zoom"]]) <- "segmentation"
 
 GW18_coords8<- Crop(xenium.gw18[["fov"]], x = c(12300, 12600), y = c(3100, 3400), coords = "plot")
 
-xenium.gw18[["zoom8"]] <- GW18_coords8
-DefaultBoundary(xenium.gw18[["zoom8"]]) <- "segmentation"
+xenium.gw18[["zoom"]] <- GW18_coords8
+DefaultBoundary(xenium.gw18[["zoom"]]) <- "segmentation"
 
 # Define features to plot
 
@@ -123,11 +123,9 @@ DefaultBoundary(xenium.gw18[["zoom8"]]) <- "segmentation"
 # colours <- xenium.gw15_palette
 # colours <- xenium.gw18_palette
 
-zoom<-"zoom8"
-
 # Plot spatial dimplot
 
-ImageDimPlot(xenium.obj, fov = zoom, group.by = "cell_type", axes = TRUE, border.color = "white", border.size = 0.075, cols = colours, coord.fixed = T, molecules = features, mols.size = 0.05, mols.cols = c("#FFFF00", "#00FF00", "#FF0088"), nmols = 10000) +
+ImageDimPlot(xenium.obj, fov = "zoom", group.by = "cell_type", axes = TRUE, border.color = "white", border.size = 0.075, cols = colours, coord.fixed = T, molecules = features, mols.size = 0.05, mols.cols = c("#FFFF00", "#00FF00", "#FF0088"), nmols = 10000) +
     theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 
 # Define the filename using the current feature, change based on GW
@@ -136,8 +134,8 @@ ggsave(paste0("Supplementary_Note_Fig_2H_GW_15_dimplot.pdf"))
 # Plot feature plots
 
 for (feature in features) {
-  # Generate the plot for the current feature; change
-  p <- ImageFeaturePlot(xenium.obj, fov = zoom, features = feature, max.cutoff = 'q90', size = 0.75, axes = FALSE, coord.fixed = TRUE) +
+  # Generate the plot for the current feature;
+  p <- ImageFeaturePlot(xenium.obj, fov = "zoom", features = feature, max.cutoff = 'q90', size = 0.75, axes = FALSE, coord.fixed = TRUE) +
     theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
     theme(plot.title = element_text(size = 20))
   
