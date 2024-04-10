@@ -66,6 +66,8 @@ xenium.gw18 <-readRDS('data/xenium_gw18_processed.rds')
 xenium.gw15_palette<-readRDS('palettes/xenium_gw15_palette.rds')
 xenium.gw18_palette<-readRDS('palettes/xenium_gw18_palette.rds')
 
+options(future.globals.maxSize = 3000 * 1024^2)
+
 # Select coordinates to zoom CHECK WITH MICHAEL
 
 GW15_coords1 <- Crop(xenium.gw15[["fov"]], x = c(11650, 11950), y = c(5550, 5850), coords = "plot")
