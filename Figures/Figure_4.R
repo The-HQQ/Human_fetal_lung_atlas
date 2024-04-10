@@ -68,25 +68,23 @@ xenium.gw18_palette<-readRDS('palettes/xenium_gw18_palette.rds')
 
 options(future.globals.maxSize = 3000 * 1024^2)
 
-# Select coordinates to zoom CHECK WITH MICHAEL
+# Select coordinates to zoom
 
 GW15_coords1 <- Crop(xenium.gw15[["fov"]], x = c(11650, 11950), y = c(5550, 5850), coords = "plot")
 
-xenium.gw15[["zoom1"]] <- GW15_coords1
-DefaultBoundary(xenium.gw15[["zoom1"]]) <- "segmentation"
+xenium.gw15[["zoom"]] <- GW15_coords1
+DefaultBoundary(xenium.gw15[["zoom"]]) <- "segmentation"
 
 GW18_coords1 <- Crop(xenium.gw18[["fov"]], x = c(6470, 6770), y = c(1850, 1550), coords = "plot")
 GW18_coords2 <- Crop(xenium.gw18[["fov"]], x = c(3700, 4000), y = c(2825, 3125), coords = "plot")
 GW18_coords3 <- Crop(xenium.gw18[["fov"]], x = c(3250, 3550), y = c(3750, 4050), coords = "plot")
 
-xenium.gw18[["zoom1"]] <- GW18_coords1
-DefaultBoundary(xenium.gw18[["zoom1"]]) <- "segmentation"
+# Change zoom each time when needed
 
-xenium.gw18[["zoom2"]] <- GW18_coords2
-DefaultBoundary(xenium.gw18[["zoom2"]]) <- "segmentation"
-
-xenium.gw18[["zoom3"]] <- GW18_coords3
-DefaultBoundary(xenium.gw18[["zoom3"]]) <- "segmentation"
+# xenium.gw18[["zoom"]] <- GW18_coords1
+# xenium.gw18[["zoom"]] <- GW18_coords2
+# xenium.gw18[["zoom"]] <- GW18_coords3
+DefaultBoundary(xenium.gw18[["zoom"]]) <- "segmentation"
 
 # Define features to plot
 
@@ -100,13 +98,9 @@ DefaultBoundary(xenium.gw18[["zoom3"]]) <- "segmentation"
 # colours <- xenium.gw15_palette
 # colours <- xenium.gw18_palette
 
-# zoom<-"zoom1"
-# zoom<-"zoom2"
-# zoom<-"zoom3"
-
 # Plot spatial dimplot
 
-ImageDimPlot(xenium.obj, fov = zoom, group.by = "cell_type", axes = TRUE, border.color = "white", border.size = 0.075, cols = colours, coord.fixed = T, molecules = features, mols.size = 0.05, mols.cols = c("#FFFF00", "#00FF00", "#FF0088"), nmols = 10000) +
+ImageDimPlot(xenium.obj, fov = "zoom", group.by = "cell_type", axes = TRUE, border.color = "white", border.size = 0.075, cols = colours, coord.fixed = T, molecules = features, mols.size = 0.05, mols.cols = c("#FFFF00", "#00FF00", "#FF0088"), nmols = 10000) +
     theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 
 # Define the filename using the current feature, change based on GW
@@ -115,8 +109,8 @@ ggsave(paste0("Fig_4D_GW_15_dimplot.pdf"))
 # Plot feature plots
 
 for (feature in features) {
-  # Generate the plot for the current feature; change
-  p <- ImageFeaturePlot(xenium.obj, fov = zoom, features = feature, max.cutoff = 'q90', size = 0.75, axes = FALSE, coord.fixed = TRUE) +
+  # Generate the plot for the current feature;
+  p <- ImageFeaturePlot(xenium.obj, fov = "zoom", features = feature, max.cutoff = 'q90', size = 0.75, axes = FALSE, coord.fixed = TRUE) +
     theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
     theme(plot.title = element_text(size = 20))
   
