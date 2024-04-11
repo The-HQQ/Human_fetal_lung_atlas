@@ -37,7 +37,7 @@ ordered_epi_features <- readRDS('data/epi_DEG_chosen.rds')
 epi_fetal<-ScaleData(epi_fetal, features = ordered_epi_features)
 
 # Generate heatmap
-DoHeatmap(epi_fetal, assay = 'RNA', features = ordered_epi_features, size = 4, angle = 0, group.colors = epi_palette, label = T, group.by = 'num_ident') +
+DoHeatmap(epi_fetal, assay = 'RNA', features = ordered_epi_features, size = 4, angle = 0, group.colors = epi_palette, label = F) +
 scale_fill_viridis(option = "D") + guides(color = "none")+ theme(axis.title = element_text(size=30)) +theme(axis.text.y = element_text(size = 30))
 ggsave("Fig_4B.pdf", width = 40, height = 18)
 
