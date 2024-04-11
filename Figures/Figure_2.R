@@ -59,8 +59,8 @@ ggsave("Fig_2C.pdf", width = 40, height = 18)
 ## Fig 2D
 
 # Load in output loom files from pyscenic & list of top transcription factors
-str_loom <- open_loom('c1_scenic_integrated-output.loom')
-str_top_tf <- readRDS('c1_top_tf.rds')
+str_loom <- open_loom('str_scenic_integrated-output.loom')
+str_top_tf <- readRDS('str_top_tf.rds')
 
 # Read information from output loom files
 regulonAUC <- get_regulons_AUC(str_loom, column.attr.name = 'RegulonsAUC')
