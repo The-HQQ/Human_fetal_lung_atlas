@@ -57,7 +57,7 @@ immune_fetal<-ScaleData(immune_fetal, ordered_immune_features)
 
 # Generate heatmap
 
-DoHeatmap(immune_fetal, assay = 'RNA', features = ordered_immune_features, size = 4, angle = 0, group.colors = immune_palette, label = T, group.by = 'num_ident') +
+DoHeatmap(immune_fetal, assay = 'RNA', features = ordered_immune_features, size = 4, angle = 0, group.colors = immune_palette, label = T) +
 scale_fill_viridis(option = "D") + guides(color = "none")+ theme(axis.title = element_text(size=30)) +theme(axis.text.y = element_text(size = 30))
 ggsave("Supplementary_Note_Fig_3C.pdf", width = 40, height = 18)
 
