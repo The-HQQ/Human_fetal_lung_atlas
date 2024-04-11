@@ -8,8 +8,8 @@ library(viridis)
 library(AUCell)
 
 # Load stromal dataset & palette
-str_fetal<-readRDS('stromal_fetal_lung.rds')
-str_palette<-readRDS('stromal_palette.rds')
+str_fetal<-readRDS('data/stromal_fetal_lung.rds')
+str_palette<-readRDS('data/stromal_palette.rds')
 
 ## Fig 2A
 
@@ -59,8 +59,8 @@ ggsave("Fig_2C.pdf", width = 40, height = 18)
 ## Fig 2D
 
 # Load in output loom files from pyscenic & list of top transcription factors
-str_loom <- open_loom('str_scenic_integrated-output.loom')
-str_top_tf <- readRDS('str_top_tf.rds')
+str_loom <- open_loom('data/str_scenic_integrated-output.loom')
+str_top_tf <- readRDS('data/str_top_tf.rds')
 
 # Read information from output loom files
 regulonAUC <- get_regulons_AUC(str_loom, column.attr.name = 'RegulonsAUC')
