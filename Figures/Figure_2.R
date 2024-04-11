@@ -54,7 +54,7 @@ stromal_features <- c(features, chosen_features)
 ordered_stromal_features <- readRDS('str_DEG_chosen.rds')
 
 # Generate heatmap
-DoHeatmap(str_fetal, assay = 'RNA', features = ordered_stromal_features, size = 4, angle = 90) +
+DoHeatmap(str_fetal, assay = 'RNA', features = ordered_stromal_features, size = 4, angle = 0, label = F) +
 scale_fill_viridis(option = "D") + guides(color = "none")+ theme(axis.title = element_text(size=30)) +theme(axis.text.y = element_text(size = 30))
 ggsave("Fig_2C.pdf", width = 40, height = 18)
 
