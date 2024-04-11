@@ -6,6 +6,8 @@ library(Seurat)
 library(tidyverse)
 library(viridis)
 library(AUCell)
+library(SCopeLoomR)
+library(SCENIC)
 
 # Load stromal dataset & palette
 str_fetal<-readRDS('data/stromal_fetal_lung.rds')
