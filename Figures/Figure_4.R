@@ -30,7 +30,7 @@ chosen_features = cc('CFTR','SFTPB','NKX2-1', 'SOX2', 'SOX9', 'FOXJ1', 'NRGN', '
 epi_features <- c(features, chosen_features)
 
 # Change the order of the features to match up with the figure; or can load in the features already ordered
-ordered_epi_features <- readRDS('ordered_epithelial_features.rds')
+ordered_epi_features <- readRDS('data/epi_DEG_chosen.rds')
 
 # Ensure selected features are scaled
 
