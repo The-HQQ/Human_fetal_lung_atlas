@@ -27,9 +27,9 @@ ggsave("~/Fig_1C.pdf", width = 11.5, height = 8.5)
 
 top5<- all_markers %>% group_by(cluster) %>% top_n(n = 5, wt = avg_log2FC)
 top_5_features = top5$gene
-all_fetal <-ScaleData(marked_data, features = top_5_features)
+all_fetal <-ScaleData(all_fetal, features = top_5_features)
 
-DoHeatmap(marked_data, assay = 'RNA', features = top_5_features, size = 4, angle = 90) +
+DoHeatmap(all_fetal, assay = 'RNA', features = top_5_features, size = 4, angle = 90) +
 scale_fill_viridis(option = "D") + guides(color = "none")+ theme(axis.title = element_text(size=30)) +theme(axis.text.y = element_text(size = 30)) +
 scale_y_discrete(breaks=top_5_features[seq(1,length(top_5_features),by=2)])
 
