@@ -51,7 +51,7 @@ chosen_features = c('KLF11', 'SMAD6', 'IL1B','IL10','TNF', 'CD68','FLT3', 'CD1C'
 immune_features <- c(features, chosen_features)
 
 # Change the order of the features to match up with the figure; or can load in the features already ordered
-ordered_immune_features <- readRDS('ordered_immune_features.rds')
+ordered_immune_features <- readRDS('immune_chosen_DEG.rds')
 
 # Generate heatmap
 DoHeatmap(immune_fetal, assay = 'RNA', features = ordered_immune_features, size = 4, angle = 90) +
