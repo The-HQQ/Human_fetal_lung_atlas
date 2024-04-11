@@ -72,6 +72,7 @@ cells<-regulonAUC@colData@rownames
 
 str_fetal<-subset(str_fetal, cells = cells)
 cellInfo<-data.frame(CellType=Idents(str_fetal))
+str_top_tf=paste0(str_top_tf,"_(+)")
 
 # Sort regulons by top transcription factors
 regulonAUC <- regulonAUC[rownames(regulonAUC) %in% str_top_tf,]
