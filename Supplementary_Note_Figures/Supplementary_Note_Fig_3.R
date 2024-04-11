@@ -10,8 +10,8 @@ library(SCopeLoomR)
 library(SCENIC)
 
 # Load immune dataset and palette
-immune_fetal<-readRDS('immune_fetal_lung.rds')
-immune_palette<-readRDS('immune_palette.rds')
+immune_fetal<-readRDS('data/immune_fetal_lung.rds')
+immune_palette<-readRDS('palettes/immune_palette.rds')
 
 ## Supplementary Note Fig 3A
 
@@ -42,7 +42,7 @@ ggsave("Supplementary_Note_Fig_3B.pdf", width = 15, height = 9)
 
 # Load DEG table for immune cluster
 
-DEG_markers<-read.csv('immune_markers.csv')
+DEG_markers<-read.csv('raw_data/immune_markers.csv')
 top3<- DEG_markers %>% group_by(cluster) %>% top_n(n = 3, wt = avg_log2FC)
 features = top3$gene
 
@@ -51,7 +51,7 @@ chosen_features = c('KLF11', 'SMAD6', 'IL1B','IL10','TNF', 'CD68','FLT3', 'CD1C'
 immune_features <- c(features, chosen_features)
 
 # Change the order of the features to match up with the figure; or can load in the features already ordered
-ordered_immune_features <- readRDS('immune_chosen_DEG.rds')
+ordered_immune_features <- readRDS('data/immune_DEG_chosen.rds')
 
 immune_fetal<-ScaleData(immune_fetal, ordered_immune_features)
 
@@ -88,8 +88,8 @@ ggsave(paste(levels(immune_fetal)[i], "GO_Cell_comp_2023.png", sep = ""), height
 ## Supplementary Note Fig 3E
 
 # Load in output loom files from pyscenic & list of top transcription factors
-immune_loom <- open_loom('immune_scenic_integrated-output.loom')
-immune_top_tf <- readRDS('immune_top_tf.rds')
+immune_loom <- open_loom('data/immune_scenic_integrated-output.loom')
+immune_top_tf <- readRDS('data/immune_top_tf.rds')
 
 # Read information from output loom files
 regulonAUC <- get_regulons_AUC(immune_loom, column.attr.name = 'RegulonsAUC')
