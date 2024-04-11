@@ -23,7 +23,7 @@ xenium_objects<-lapply(X=xenium_objects, FUN = function(x) {
   x<- RunPCA(x, npcs = 30, features = rownames(x))
   x<-RunUMAP(x, dims = 1:30)
   x<-FindNeighbors(x, reduction = 'pca', dims = 1:30)
-  x<-FindClusters(x, resolution = c(0.3)
+  x<-FindClusters(x, resolution = c(0.01, 0.05, 0.1, 0.3, 0.5, 1)
 })
 
 saveRDS(xenium_objects[[1]], '/data/xenium_gw15_processed.rds')
