@@ -79,9 +79,9 @@ regulonAUC <- regulonAUC[rownames(regulonAUC) %in% str_top_tf,]
 # Generate heatmap based on regulon activity
 
 row_names <- levels(str_fetal)
-regulonsAUC <- regulonsAUC[onlyNonDuplicatedExtended(rownames(regulonsAUC)),]
+regulonAUC <- regulonAUC[onlyNonDuplicatedExtended(rownames(regulonAUC)),]
 regulonActivity_byCellType <- sapply(split(rownames(cellInfo), cellInfo$CellType),
-                                     function(cells) rowMeans(getAUC(regulonsAUC)[,cells]))
+                                     function(cells) rowMeans(getAUC(regulonAUC)[,cells]))
 regulonActivity_byCellType_Scaled <- t(scale(t(regulonActivity_byCellType), center = T, scale=T))
 
 ComplexHeatmap::Heatmap(t(regulonActivity_byCellType_Scaled), name="Regulon activity", row_order = c(1:19), column_order = str_top_tf,row_labels = row_names, row_names_side = 'left')
