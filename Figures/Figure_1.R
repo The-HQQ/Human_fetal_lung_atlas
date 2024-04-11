@@ -27,6 +27,8 @@ ggsave("~/Fig_1C.pdf", width = 11.5, height = 8.5)
 
 top5<- all_markers %>% group_by(cluster) %>% top_n(n = 5, wt = avg_log2FC)
 top_5_features = top5$gene
+DefaultAssay(all_fetal) <- 'RNA'
+Idents(all_fetal) <- 'cell_type'
 all_fetal <-ScaleData(all_fetal, features = top_5_features)
 
 DoHeatmap(all_fetal, assay = 'RNA', features = top_5_features, size = 4, angle = 90) +
