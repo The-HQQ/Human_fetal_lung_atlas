@@ -31,8 +31,8 @@ ggplot(pt, aes(x = Var2, y = Freq, fill = Var1)) +
 ## Supplementary Fig. 4B
 
 # Load in output loom files from pyscenic & list of top transcription factors
-epi_loom <- open_loom('c2_scenic_integrated-output.loom')
-epi_top_tf <- readRDS('c2_top_tf.rds')
+epi_loom <- open_loom('epi_scenic_integrated-output.loom')
+epi_top_tf <- readRDS('epi_top_tf.rds')
 
 # Read information from output loom files
 regulonAUC <- get_regulons_AUC(epi_loom, column.attr.name = 'RegulonsAUC')
