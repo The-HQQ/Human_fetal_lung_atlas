@@ -60,8 +60,8 @@ ggsave("Supplementary_Note_Fig_2C.pdf", width = 40, height = 18)
 ## Supplementary Note Fig 2D
 
 # Load in output loom files from pyscenic & list of top transcription factors
-endo_loom <- open_loom('c3_scenic_integrated-output.loom')
-endo_top_tf <- readRDS('c3_top_tf.rds')
+endo_loom <- open_loom('endo_scenic_integrated-output.loom')
+endo_top_tf <- readRDS('endo_top_tf.rds')
 
 # Read information from output loom files
 regulonAUC <- get_regulons_AUC(endo_loom, column.attr.name = 'RegulonsAUC')
