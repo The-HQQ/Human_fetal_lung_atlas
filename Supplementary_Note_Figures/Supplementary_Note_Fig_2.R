@@ -9,8 +9,8 @@ library(SCopeLoomR)
 library(SCENIC)
 
 # Load endothelial dataset and palette
-endo_fetal<-readRDS('endo_fetal_lung.rds')
-endo_palette<-readRDS('endo_palette.rds')
+endo_fetal<-readRDS('data/endo_fetal_lung.rds')
+endo_palette<-readRDS('palettes/endo_palette.rds')
 
 ## Supplementary Note Fig 2A
 
@@ -41,7 +41,7 @@ ggsave("Supplementary_Note_Fig_2B.pdf", width = 15, height = 9)
 
 # Load DEG table for endothelial cluster
 
-DEG_markers<-read.csv('endo_markers.csv')
+DEG_markers<-read.csv('raw_data/endo_markers.csv')
 top3<- DEG_markers %>% group_by(cluster) %>% top_n(n = 3, wt = avg_log2FC)
 features = top3$gene
 
@@ -50,7 +50,9 @@ chosen_features = c('NRP2', 'TOP2A', 'MKI67', 'CENPF', 'EGFL6', 'COL6A3', 'REL',
 endo_features <- c(features, chosen_features)
 
 # Change the order of the features to match up with the figure; or can load in the features already ordered
-ordered_endo_features <- readRDS('ordered_endo_features.rds')
+ordered_endo_features <- readRDS('endo_DEG_chosen.rds')
+
+endo_fetal<-ScaleData(endo_fetal, ordered_endo_features)
 
 # Generate heatmap
 DoHeatmap(endo_fetal, assay = 'RNA', features = ordered_endo_features, size = 4, angle = 90) +
@@ -60,8 +62,8 @@ ggsave("Supplementary_Note_Fig_2C.pdf", width = 40, height = 18)
 ## Supplementary Note Fig 2D
 
 # Load in output loom files from pyscenic & list of top transcription factors
-endo_loom <- open_loom('endo_scenic_integrated-output.loom')
-endo_top_tf <- readRDS('endo_top_tf.rds')
+endo_loom <- open_loom('data/endo_scenic_integrated-output.loom')
+endo_top_tf <- readRDS('data/endo_top_tf.rds')
 
 # Read information from output loom files
 regulonAUC <- get_regulons_AUC(endo_loom, column.attr.name = 'RegulonsAUC')
