@@ -43,7 +43,7 @@ ggsave("Fig_2B.pdf", width = 15, height = 9)
 # Load DEG table for stromal cluster
 
 DEG_markers<-read.csv('c1_markers.csv')
-top3<- all_markers_res_0_01 %>% group_by(cluster) %>% top_n(n = 3, wt = avg_log2FC)
+top3<- DEG_markers %>% group_by(cluster) %>% top_n(n = 3, wt = avg_log2FC)
 features = top3$gene
 
 # DEG features that were chosen
@@ -51,7 +51,7 @@ chosen_features = c('TCF21', 'PLEKHH2', 'FOS', 'EGR1', 'MKI67', 'TIMP3', 'LGALS3
 stromal_features <- c(features, chosen_features)
 
 # Change the order of the features to match up with the figure; or can load in the features already ordered
-ordered_stromal_features <- readRDS('ordered_stromal_features.rds')
+ordered_stromal_features <- readRDS('str_DEG_chosen.rds')
 
 # Generate heatmap
 DoHeatmap(str_fetal, assay = 'RNA', features = ordered_stromal_features, size = 4, angle = 90) +
