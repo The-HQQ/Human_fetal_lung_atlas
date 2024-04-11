@@ -55,7 +55,8 @@ ordered_endo_features <- readRDS('endo_DEG_chosen.rds')
 endo_fetal<-ScaleData(endo_fetal, ordered_endo_features)
 
 # Generate heatmap
-DoHeatmap(endo_fetal, assay = 'RNA', features = ordered_endo_features, size = 4, angle = 90) +
+
+DoHeatmap(endo_fetal, assay = 'RNA', features = ordered_endo_features, size = 4, angle = 0, group.colors = endo_palette, label = T, group.by = 'num_ident') +
 scale_fill_viridis(option = "D") + guides(color = "none")+ theme(axis.title = element_text(size=30)) +theme(axis.text.y = element_text(size = 30))
 ggsave("Supplementary_Note_Fig_2C.pdf", width = 40, height = 18)
 
