@@ -35,6 +35,14 @@ The code requires the following R packages:
 
 ### Python dependencies
 The code requires the following python packages:
+* os
+* numpy 
+* pandas 
+* scanpy 
+* loompy 
+* MulticoreTSNE
+* seaborn 
+* glob
 
 ## Instructions to run code
 Download all processed data files and palettes at: https://www.synapse.org/#!Synapse:syn53437291/. Code is used to produce figures, supplementary data figures, and figures for Early human fetal lung atlas reveals the temporal dynamics of epithelial cell plasticity (Quach &amp; Farrell, et al. 2023).
