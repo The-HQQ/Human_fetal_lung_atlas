@@ -21,6 +21,12 @@ The code requires the following R packages:
 * slingshot (v2.7.0)
 * tidyverse (v2.0.0)
 * viridis (v0.6.2)
+* grDevices (v4.2.1)
+* Matrix (v1.6.4)
+* rgl (v1.2.3)
+* clusterExperiment (v2.16.0)
+* gam (v1.22.2)
+* 
 
 ### Python dependencies
 The code requires the following python packages:
