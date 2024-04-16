@@ -26,7 +26,12 @@ The code requires the following R packages:
 * rgl (v1.2.3)
 * clusterExperiment (v2.16.0)
 * gam (v1.22.2)
-* 
+* AUCell (v1.18.1)
+* foreach (v1.5.2)
+* data.table (v1.14.1)
+* pheatmap (v1.0.12)
+* gplots (v3.1.3)
+
 
 ### Python dependencies
 The code requires the following python packages:
