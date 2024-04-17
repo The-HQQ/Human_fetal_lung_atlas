@@ -11,7 +11,8 @@ library(cowplot, verbose = FALSE)
 library(ggplot2, verbose = FALSE)
 
 # Sample name
-sample_names <- c("GW_10_2", 
+sample_names <- c("GW_10_1",
+                  "GW_10_2", 
                   "GW_11_1", 
                   "GW_12_3", 
                   "GW_13_4", 
@@ -20,16 +21,19 @@ sample_names <- c("GW_10_2",
                   "GW_15_5", 
                   "GW_15_5_1", 
                   "GW_16_1", 
-                  "GW_16_2", 
+                  "GW_16_2",
+                  "GW_16_5",
                   "GW_18", 
                   "GW_18_1", 
                   "GW_18_2", 
                   "GW_18D_1", "GW_18P_1",
                   "GW_19_0", 
-                  "GW_19_2") 
+                  "GW_19_2",
+                  "GW_19_4") 
 
 # Predicted gender
-gender <- c("Male",
+gender <- c("Female",
+            "Male",
             "Male",
             "Male",
             "Male",
@@ -38,16 +42,19 @@ gender <- c("Male",
             "Female",
             "Female",
             "Male",
+            "Female",
             "Female",
             "Male",
             "Male",
             "Female",
             "Male", "Male",
             "Male",
-            "Female")
+            "Female",
+            "Male")
 
 # Batch number
-batch_number <- c(1,
+batch_number <- c(10,
+                  1,
                   2,
                   3,
                   2,
@@ -57,15 +64,18 @@ batch_number <- c(1,
                   6,
                   2,
                   3,
+                  10,
                   9,
                   8,
                   9,
                   5, 5,
                   7,
-                  9)
+                  9,
+                  10)
 
 # Groups according to gestation week
-sample_group <- c("early", 
+sample_group <- c("early",
+                  "early", 
                   "early", 
                   "early", 
                   "early", 
@@ -74,16 +84,19 @@ sample_group <- c("early",
                   "mid", 
                   "mid", 
                   "mid", 
-                  "mid", 
+                  "mid",
+                  "mid",
                   "late", 
                   "late", 
                   "late", 
                   "late", "late",
                   "late", 
+                  "late",
                   "late") 
 
 # Gestational week
-sample_week <- c("week_10", 
+sample_week <- c( "week_10",
+                  "week_10", 
                   "week_11", 
                   "week_12", 
                   "week_13", 
@@ -92,16 +105,15 @@ sample_week <- c("week_10",
                   "week_15", 
                   "week_15", 
                   "week_16", 
-                  "week_16", 
+                  "week_16",
+                  "week_16",
                   "week_18", 
                   "week_18", 
                   "week_18", 
                   "week_18", "week_18",
                   "week_19", 
+                  "week_19"
                   "week_19") 
-
-# Directory path
-# set_dir <- "/hpf/largeprojects/ccmbio/pkallurkar/scRNA-seq/"
 
 # Set number of features to use for downstream analysis
 number_of_features <- 3000
