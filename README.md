@@ -11,7 +11,7 @@ The code has been tested for _macOS_ and _Linux_ on the following systems:
 * Linux: CentOS Linux 7 (Core)
 
 ### R dependencies
-The code requires the following R packages:
+The code requires the following R packages and has been tested on the following package versions:
 * Seurat (v4.0)
 * SeuratData (v0.2.2)
 * SCENIC (v1.3.1)
