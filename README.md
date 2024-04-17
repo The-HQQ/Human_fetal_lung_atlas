@@ -1,5 +1,6 @@
 # Human_fetal_lung_atlas
-Code availablility for: Early human fetal lung atlas reveals the temporal dynamics of epithelial cell plasticity (Quach &amp; Farrell, et al. 2023)
+Code availablility for: Early human fetal lung atlas reveals the temporal dynamics of epithelial cell plasticity (Quach &amp; Farrell, et al. 2023).
+See additional code: https://github.com/Spencerfar/fetal_lung_analysis
 
 # System Requirements
 
