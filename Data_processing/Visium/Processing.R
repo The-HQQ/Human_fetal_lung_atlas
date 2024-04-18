@@ -22,11 +22,11 @@ vis.gw15<- subset(vis.gw15, subset = nFeature_Spatial > 300 & percent_mito <10)
 vis.gw15 <- SCTransform(vis.gw15, assay = "Spatial", verbose = FALSE)
 vis.gw18 <- SCTransform(vis.gw18, assay = "Spatial", verbose = FALSE)
 
-preprocessing_process<-function(data.sub){
-  data.sub<-RunPCA(data.sub, assay = 'SCT', verbose = F)
-  data.sub <- FindNeighbors(data.sub, dims = 1:30, verbose = FALSE, reduction = "pca")
-  data.sub <- FindClusters(data.sub, verbose = F)
-  data.sub <- RunUMAP(data.sub, reduction = "pca", dims = 1:30, verbose = FALSE,return.model=TRUE)
+preprocessing_process<-function(data){
+  data<-RunPCA(data, assay = 'SCT', verbose = F)
+  data <- FindNeighbors(data, dims = 1:30, verbose = FALSE, reduction = "pca")
+  data <- FindClusters(data, verbose = F)
+  data <- RunUMAP(data, reduction = "pca", dims = 1:30, verbose = FALSE,return.model=TRUE)
 }
 
 vis.gw15<-preprocessing_process(vis.gw15)
